@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class MaximumInEachRow {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        int[][] a = new int[n][m];
+        int[][] dp = new int[n][m];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                a[i][j] = sc.nextInt();
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            dp[i][0] = a[i][0];
+
+            for (int j = 1; j < m; j++) {
+                dp[i][j] = Math.max(dp[i][j - 1], a[i][j]);
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(dp[i][m - 1] + " ");
+        }
+
+        sc.close();
+    }
+}
