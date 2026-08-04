@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class LCSubstringFinder {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String textA = sc.next();
+        String textB = sc.next();
+
+        int sizeA = textA.length();
+        int sizeB = textB.length();
+
+        int[][] dp = new int[sizeA + 1][sizeB + 1];
+        int maxLen = 0;
+
+        for (int i = 1; i <= sizeA; i++) {
+            for (int j = 1; j <= sizeB; j++) {
+
+                if (textA.charAt(i - 1) == textB.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                    maxLen = Math.max(maxLen, dp[i][j]);
+                } else {
+                    dp[i][j] = 0;
+                }
+            }
+        }
+
+        System.out.println(maxLen);
+    }
+}
